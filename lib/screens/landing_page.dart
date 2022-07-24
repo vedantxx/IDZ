@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:idz_reg/screens/details_screen.dart';
 import 'package:provider/provider.dart';
 import '../apis/idz_test_api.dart';
 import '../database/MyDatabaseHelper.dart';
@@ -112,6 +113,14 @@ class _MyLandingPageState extends State<MyLandingPage> {
                                                 MyDatabaseHelper.instance.remove(index.id!);
                                               });
                                             },
+                                            onTap: (){
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsScreen(
+                                                name: index.name.toString(),
+                                                isNet: 0,
+                                                dob: index.dob,
+                                                email: index.email,
+                                              )));
+                                            },
                                           ),
                                         ),
                                       );
@@ -177,6 +186,14 @@ class _MyLandingPageState extends State<MyLandingPage> {
                                                 ),
                                               ),
                                             ),
+                                            onTap: (){
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsScreen(
+                                                name: index.name.toString(),
+                                                isNet: 1,
+                                                age: index.age.toString(),
+                                                salary: index.salary.toString(),
+                                              )));
+                                            },
                                             subtitle: Text("Salary: ${index.salary.toString()} , Age: ${index.age.toString()}"),
                                             // onTap: (){
                                             //   setState((){
