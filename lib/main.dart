@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idz_reg/providers/date_selector_provider.dart';
 import 'package:idz_reg/providers/employes_api_provider.dart';
 import 'package:idz_reg/screens/home_page.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +15,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => EmployeesApiProvider(),
+    return MultiProvider(
+      // create: (context) => EmployeesApiProvider(),
+      providers: [
+        ChangeNotifierProvider<EmployeesApiProvider>(
+          create: (_) => EmployeesApiProvider(),
+        ),
+        ChangeNotifierProvider<DateSelectorProvider >(
+          create: (_) => DateSelectorProvider(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,

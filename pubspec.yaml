@@ -38,6 +38,7 @@ dependencies:
   path_provider:
   http:
   provider:
+  syncfusion_flutter_datepicker: ^20.2.39
 #  flutter_launcher_icons: ^0.9.3
 
 dev_dependencies:
