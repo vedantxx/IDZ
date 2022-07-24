@@ -19,7 +19,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int? selectedId = -1;
   TextEditingController textEditingController = TextEditingController();
-  TextEditingController passwordTextEditingController = TextEditingController();
+  TextEditingController emailTextEditingController = TextEditingController();
 
   TextEditingController yearTextEditingController = TextEditingController();
   TextEditingController monthTextEditingController = TextEditingController();
@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     yearTextEditingController = provider.yc;
     monthTextEditingController = provider.mc;
     dayTextEditingController = provider.dc;
+    _selectedDate = provider.date!;
     return Scaffold(
       // appBar: AppBar(
       //   title: const Text("IDZ Reg"),
@@ -120,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 48,
                         child: TextFormField(
                           controller: textEditingController,
-                          autofocus: true,
+                          // autofocus: true,
                           decoration: const InputDecoration(
                             fillColor: Colors.white,
                             border: InputBorder.none,
@@ -311,12 +312,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         height: 48,
                         child: TextFormField(
-                          autofocus: true,
-                          controller: passwordTextEditingController,
+                          // autofocus: true,
+                          controller: emailTextEditingController,
                           decoration: const InputDecoration(
                             fillColor: Colors.white,
                             border: InputBorder.none,
-                            // hintText: "Password",
                             hintMaxLines: 1,
                             // alignLabelWithHint: false,
                             focusedBorder: OutlineInputBorder(
@@ -325,7 +325,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             filled: true,
                             contentPadding:
                             EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
-                            labelText: "Password",
+                            labelText: "Email",
                             labelStyle: TextStyle(
                               color: Colors.black54
                             ),
@@ -341,13 +341,18 @@ class _MyHomePageState extends State<MyHomePage> {
                             if(selectedId == -1)
                             {
                               if (textEditingController.text != '' &&
-                                  passwordTextEditingController.text != '') {
+                                  emailTextEditingController.text != '') {
                                 await MyDatabaseHelper.instance.add(MyDatabase(
                                     name: textEditingController.text,
-                                    password: passwordTextEditingController.text));
+                                    email: emailTextEditingController.text,
+                                  dob: _selectedDate,
+                                ));
                                 setState(() {
                                   textEditingController.clear();
-                                  passwordTextEditingController.clear();
+                                  emailTextEditingController.clear();
+                                  yearTextEditingController.clear();
+                                  monthTextEditingController.clear();
+                                  dayTextEditingController.clear();
                                 });
                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyLandingPage()));
                               } else {
@@ -358,11 +363,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               await MyDatabaseHelper.instance.update(MyDatabase(
                                 id: selectedId,
                                 name: textEditingController.text,
-                                password: passwordTextEditingController.text,
+                                email: emailTextEditingController.text,
                               ));
                               setState(() {
                                 textEditingController.clear();
-                                passwordTextEditingController.clear();
+                                emailTextEditingController.clear();
                                 selectedId = -1;
                               });
                             }

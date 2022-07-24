@@ -21,7 +21,7 @@ class MyDatabaseHelper {
   }
 
   Future _onCreate(Database db,int version) async {
-    await db.execute('CREATE TABLE IDZ(id INTEGER PRIMARY KEY, name TEXT, password TEXT)');
+    await db.execute('CREATE TABLE IDZ(id INTEGER PRIMARY KEY, name TEXT, dob TEXT,email TEXT)');
   }
 
   Future<List<MyDatabase>> getDatabase() async {

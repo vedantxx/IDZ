@@ -1,14 +1,16 @@
 class MyDatabase {
   final int? id;
   final String? name;
-  final String? password;
+  final String? email;
+  final String? dob;
 
-  MyDatabase({this.id, this.name, this.password});
+  MyDatabase({this.id,this.dob, this.name, this.email});
   factory MyDatabase.fromMap(Map<String,dynamic> json) {
     return MyDatabase(
         id: json["id"],
         name: json["name"],
-        password: json["password"],
+        email: json["email"],
+      dob: json["dob"],
     );
   }
 
@@ -16,7 +18,8 @@ class MyDatabase {
     return {
       "id" : id,
       "name" : name,
-      "password" : password,
+      "email" : email,
+      "dob" : dob,
     };
   }
 }

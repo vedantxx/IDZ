@@ -92,7 +92,7 @@ class _MyLandingPageState extends State<MyLandingPage> {
                                                 ),
                                               ),
                                             ),
-                                            subtitle: Text("Password: ${index.password.toString()}"),
+                                            subtitle: Text("Email: ${index.email.toString()}, DOB: ${index.dob.toString().substring(0,10)}"),
                                             // onTap: (){
                                             //   setState((){
                                             //     if(selectedId == -1) {
